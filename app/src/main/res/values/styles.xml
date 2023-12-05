@@ -17,6 +17,12 @@
 
     <style name="RoundedImageViewShape">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">20dp</item> <!-- Set your desired corner radius -->
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="RoundedImageViewShapeTopOnly">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">20dp</item>
+        <item name="cornerSizeTopRight">20dp</item>
     </style>
 </resources>
