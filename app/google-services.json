@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "242015818000",
+    "project_id": "manu-d2710",
+    "storage_bucket": "manu-d2710.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:242015818000:android:b0cf50951b9b26c5795595",
+        "android_client_info": {
+          "package_name": "id.co.manu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYaqd0lsoLF5fA62mspNkOrrpdUFgQVUE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
