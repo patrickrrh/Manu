@@ -5,5 +5,7 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.Manu" parent="Base.Theme.Manu" />
+    <style name="Theme.Manu" parent="Base.Theme.Manu">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
 </resources>
