@@ -14,4 +14,9 @@
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/poppins_bold</item>
     </style>
+
+    <style name="RoundedImageViewShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item> <!-- Set your desired corner radius -->
+    </style>
 </resources>

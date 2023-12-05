@@ -2,4 +2,7 @@
     <string name="app_name">Manu</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="halo_selamat_datang">Halo! Selamat Datang</string>
+    <string name="profile_picture">A Profile Picture</string>
+    <string name="cth_pabrik_furnitur">Cth: Pabrik Furnitur</string>
 </resources>
