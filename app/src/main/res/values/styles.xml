@@ -5,7 +5,6 @@
         <item name="itemIconTint">@color/bottom_nav_unselected</item>
         <item name="itemTextColor">@color/bottom_nav_unselected</item>
         <item name="itemRippleColor">@android:color/transparent</item>
-        <item name="itemBackground">@null</item>
         <item name="itemActiveIndicatorStyle">@null</item>
         <item name="itemIconSize">35dp</item>
         <item name="android:textStyle">bold</item>
