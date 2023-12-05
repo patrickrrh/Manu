@@ -3,12 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    tools:context=".views.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Button
+        android:id="@+id/signOutBtn"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Profile" />
+        android:layout_height="wrap_content"
+        android:text="@string/sign_out"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:backgroundTint="@color/manu_blue"
+        android:padding="15dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="5dp"/>
 
 </FrameLayout>

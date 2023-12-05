@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/frameAuth"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="40dp"
+        android:paddingBottom="25dp"
+        android:paddingHorizontal="20dp"
+        tools:context=".views.SignUpFragment">
+
+        <ImageView
+            android:layout_width="59dp"
+            android:layout_height="86dp"
+            android:src="@drawable/manu_splash"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_up"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/signup_intro"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:layout_marginBottom="15dp"/>
+
+        <EditText
+            android:id="@+id/namaTbx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nama"
+            android:background="@drawable/edit_text_drawable"
+            android:padding="12dp"
+            android:layout_marginBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/nomorHandphoneTbx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nomor_handphone"
+            android:background="@drawable/edit_text_drawable"
+            android:padding="12dp"
+            android:inputType="phone"
+            android:layout_marginBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/emailTbx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:background="@drawable/edit_text_drawable"
+            android:padding="12dp"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/passwordTbx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:background="@drawable/edit_text_drawable"
+            android:padding="12dp"
+            android:inputType="textPassword"
+            android:layout_marginBottom="10dp"/>
+
+        <View android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
+
+        <Button
+            android:id="@+id/signUpBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/buat_akun"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:backgroundTint="@color/manu_blue"
+            android:padding="15dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="0"/>
+        <TextView
+            android:id="@+id/signInTxtBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sudah_punya_akun_klik_disini"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+</FrameLayout>

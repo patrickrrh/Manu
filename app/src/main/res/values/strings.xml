@@ -6,4 +6,17 @@
     <string name="profile_picture">A Profile Picture</string>
     <string name="cth_pabrik_furnitur">Cth: Pabrik Furnitur</string>
     <string name="pabrik_rekomendasi">Pabrik Rekomendasi</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="signup_intro">Buat akunmu terlebih dahulu yuk agar kami bisa mengenal kamu lebih lanjut!</string>
+    <string name="nama">Nama</string>
+    <string name="nomor_handphone">Nomor Handphone</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="buat_akun">Buat Akun</string>
+    <string name="login">Login</string>
+    <string name="signin_intro">Selamat datang kembali! Tolong masukkan data akunmu</string>
+    <string name="masuk">Masuk</string>
+    <string name="belum_punya_akun_daftar_disini">Belum punya akun? Daftar disini</string>
+    <string name="sudah_punya_akun_klik_disini">Sudah punya akun? Klik disini</string>
+    <string name="sign_out">Sign Out</string>
 </resources>
