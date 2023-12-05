@@ -3,51 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ExploreFragment">
+    tools:context=".views.ExploreFragment">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cari Pabrik yang Anda Butuhkan" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Contoh: Pabrik Mainan"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="16dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-
-            <AutoCompleteTextView
-                android:id="@+id/txtDaerah"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="16dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-
-            <AutoCompleteTextView
-                android:id="@+id/txtKategoriPabrik"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
+        android:layout_height="match_parent">
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BottomNavigation">
+        <item name="itemBackground">@color/white</item>
+        <item name="itemIconTint">@color/bottom_nav_unselected</item>
+        <item name="itemTextColor">@color/bottom_nav_unselected</item>
+        <item name="itemRippleColor">@android:color/transparent</item>
+        <item name="itemActiveIndicatorStyle">@null</item>
+        <item name="itemIconSize">35dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BottomNavigation.ActiveItemTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="RoundedImageViewShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="RoundedImageViewShapeTopOnly">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">20dp</item>
+        <item name="cornerSizeTopRight">20dp</item>
+    </style>
+</resources>
