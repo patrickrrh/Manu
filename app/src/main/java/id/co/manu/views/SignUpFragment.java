@@ -25,7 +25,7 @@ import id.co.manu.viewmodel.AuthViewModel;
 
 public class SignUpFragment extends Fragment {
 
-    private EditText namaTbx, nomorHandphoneTbx, emailTbx, passwordTbx;
+    private EditText namaRegisterTbx, nomorHandphoneRegisterTbx, emailRegisterTbx, passwordRegisterTbx;
     private TextView signInTxtBtn;
     private Button signUpBtn;
     private AuthViewModel authViewModel;
@@ -39,20 +39,16 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser != null){
-                    Fragment fragment = new SignInFragment();
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.frameAuth, fragment);
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
+                    Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign_up, container, false);
     }
@@ -60,10 +56,10 @@ public class SignUpFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        namaTbx = view.findViewById(R.id.namaTbx);
-        nomorHandphoneTbx = view.findViewById(R.id.nomorHandphoneTbx);
-        emailTbx = view.findViewById(R.id.emailTbx);
-        passwordTbx = view.findViewById(R.id.passwordTbx);
+        namaRegisterTbx = view.findViewById(R.id.namaRegisterTbx);
+        nomorHandphoneRegisterTbx = view.findViewById(R.id.nomorHandphoneRegisterTbx);
+        emailRegisterTbx = view.findViewById(R.id.emailRegisterTbx);
+        passwordRegisterTbx = view.findViewById(R.id.passwordRegisterTbx);
         signInTxtBtn = view.findViewById(R.id.signInTxtBtn);
         signUpBtn = view.findViewById(R.id.signUpBtn);
 
@@ -73,7 +69,7 @@ public class SignUpFragment extends Fragment {
                 Fragment fragment = new SignInFragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frameAuth, fragment);
+                fragmentTransaction.replace(R.id.mainFrameLayout, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
@@ -82,10 +78,10 @@ public class SignUpFragment extends Fragment {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nama = namaTbx.getText().toString();
-                String phoneNum = nomorHandphoneTbx.getText().toString();
-                String email = emailTbx.getText().toString();
-                String password = passwordTbx.getText().toString();
+                String nama = namaRegisterTbx.getText().toString();
+                String phoneNum = nomorHandphoneRegisterTbx.getText().toString();
+                String email = emailRegisterTbx.getText().toString();
+                String password = passwordRegisterTbx.getText().toString();
 
                 if(!email.isEmpty() && !password.isEmpty() && !nama.isEmpty() && !phoneNum.isEmpty()){
                     authViewModel.register(email, password, nama, phoneNum);
