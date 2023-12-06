@@ -22,5 +22,9 @@ public class CustomerViewModel extends AndroidViewModel {
         super(application);
         customerRepo = new CustomerRepo(application);
         customerData = customerRepo.getCustomerLiveData();
+
+        if (customerData == null) {
+            customerData = new MutableLiveData<>();
+        }
     }
 }
