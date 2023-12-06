@@ -21,6 +21,7 @@ public class NavigationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_Manu);
         setContentView(R.layout.activity_navigation);
 
         bottomNavBar = findViewById(R.id.bottomNavigationView);
