@@ -161,11 +161,12 @@
                         android:orientation="vertical">
 
                         <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/card1Img"
                             android:layout_width="match_parent"
                             android:layout_height="130dp"
                             android:layout_marginBottom="5dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/dummy_image"
+                            android:src="@drawable/loading_img"
                             app:shapeAppearanceOverlay="@style/RoundedImageViewShapeTopOnly" />
 
                         <TextView
@@ -214,11 +215,12 @@
                         android:orientation="vertical">
 
                         <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/card2Img"
                             android:layout_width="match_parent"
                             android:layout_height="130dp"
                             android:layout_marginBottom="5dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/dummy_image"
+                            android:src="@drawable/loading_img"
                             app:shapeAppearanceOverlay="@style/RoundedImageViewShapeTopOnly" />
 
                         <TextView

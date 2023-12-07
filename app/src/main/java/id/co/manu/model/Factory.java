@@ -1,6 +1,8 @@
 package id.co.manu.model;
 
-public class Factory {
+import java.io.Serializable;
+
+public class Factory implements Serializable {
     private String factoryId;
     private String name;
     private String price;

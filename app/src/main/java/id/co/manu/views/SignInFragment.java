@@ -16,7 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 
@@ -36,14 +38,11 @@ public class SignInFragment extends Fragment {
         authViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
                 .getInstance(getActivity().getApplication())).get(AuthViewModel.class);
 
-        authViewModel.getUserData().observe(this, new Observer<FirebaseUser>() {
-            @Override
-            public void onChanged(FirebaseUser firebaseUser) {
-                if(firebaseUser != null){
-                    Intent intent = new Intent(getActivity(), NavigationActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
-                }
+        authViewModel.getUserData().observe(this, firebaseUser -> {
+            if(firebaseUser != null){
+                Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
     }
@@ -62,28 +61,26 @@ public class SignInFragment extends Fragment {
         signUpTxtBtn = view.findViewById(R.id.signUpTxtBtn);
         signInBtn = view.findViewById(R.id.signInBtn);
 
-        signUpTxtBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new SignUpFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.mainFrameLayout, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+        signUpTxtBtn.setOnClickListener(v -> {
+            Fragment fragment = new SignUpFragment();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.mainFrameLayout, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        });
+
+        signInBtn.setOnClickListener(v -> {
+            String email = emailLoginTbx.getText().toString();
+            String password = passwordLoginTbx.getText().toString();
+
+            if(!email.isEmpty() && !password.isEmpty() ){
+                authViewModel.login(email, password);
+            }else{
+                Toast.makeText(getContext(), "Masukkan Email dan Password!", Toast.LENGTH_SHORT).show();
             }
         });
 
-        signInBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = emailLoginTbx.getText().toString();
-                String password = passwordLoginTbx.getText().toString();
 
-                if(!email.isEmpty() && !password.isEmpty() ){
-                    authViewModel.login(email, password);
-                }
-            }
-        });
     }
 }
