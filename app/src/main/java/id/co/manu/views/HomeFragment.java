@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment {
         card1Address = view.findViewById(R.id.card1Address);
         card2Address = view.findViewById(R.id.card2Address);
         factoryViewModel.getAllFactory().observe(getActivity(), factoryArrayList -> {
-            if (factoryArrayList != null) {
+            if (factoryArrayList != null && factoryArrayList.size() >= 2) {
                 card1Title.setText(factoryArrayList.get(0).getName());
                 card2Title.setText(factoryArrayList.get(1).getName());
 
