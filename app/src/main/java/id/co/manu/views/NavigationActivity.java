@@ -1,22 +1,20 @@
 package id.co.manu.views;
 
-import androidx.annotation.NonNull;
+import android.os.Bundle;
+import android.widget.FrameLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.FrameLayout;
-
 import com.google.android.material.navigation.NavigationBarView;
 
 import id.co.manu.R;
 
-public class NavigationActivity extends AppCompatActivity {
+public class NavigationActivity extends AppCompatActivity implements HomeFragment.OnSearchButtonClickListener {
+
     private NavigationBarView bottomNavBar;
-    private FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,24 +23,20 @@ public class NavigationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_navigation);
 
         bottomNavBar = findViewById(R.id.bottomNavigationView);
-        frameLayout = findViewById(R.id.frameLayout);
 
-        bottomNavBar.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int itemId = item.getItemId();
+        bottomNavBar.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
 
-                if(itemId == R.id.mnHome){
-                    loadPage(new HomeFragment(), false);
-                }else if(itemId == R.id.mnExplore){
-                    loadPage(new ExploreFragment(), false);
-                }else if(itemId == R.id.mnReport){
-                    loadPage(new ReportFragment(), false);
-                }else if(itemId == R.id.mnProfile){
-                    loadPage(new ProfileFragment(), false);
-                }
-                return true;
+            if(itemId == R.id.mnHome){
+                loadPage(new HomeFragment(), false);
+            }else if(itemId == R.id.mnExplore){
+                loadPage(new ExploreFragment(), false);
+            }else if(itemId == R.id.mnReport){
+                loadPage(new ReportFragment(), false);
+            }else if(itemId == R.id.mnProfile){
+                loadPage(new ProfileFragment(), false);
             }
+            return true;
         });
         loadPage(new HomeFragment(), true);
     }
@@ -58,5 +52,10 @@ public class NavigationActivity extends AppCompatActivity {
         }
 
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onSearchButtonClick() {
+        bottomNavBar.setSelectedItemId(R.id.mnExplore);
     }
 }

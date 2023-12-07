@@ -13,10 +13,10 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/factoryImg"
+            android:id="@+id/factoryDetailImg"
             android:layout_width="match_parent"
             android:layout_height="225dp"
-            android:src="@drawable/dummy_image"
+            android:src="@drawable/loading_img"
             android:scaleType="centerCrop"/>
 
         <TextView
@@ -28,7 +28,7 @@
             android:textSize="15sp"/>
 
         <TextView
-            android:id="@+id/priceTxt"
+            android:id="@+id/priceDetailTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Rp15.000.000/Bulan"
@@ -37,7 +37,7 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/categoryTxt"
+            android:id="@+id/categoryDetailTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Produsen Furnitur Kayu"
@@ -63,15 +63,15 @@
                 android:orientation="vertical">
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_gravity="center"
                     app:cardElevation="0dp"
                     app:cardCornerRadius="50dp"
                     app:cardBackgroundColor="@color/white">
 
                     <ImageView
-                        android:id="@+id/circularImageView"
+                        android:id="@+id/companyPicDetailImg"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/dummy_company"
@@ -122,15 +122,16 @@
             android:text="@string/deskripsi_pabrik"
             android:textStyle="bold"
             android:paddingHorizontal="20dp"
-            android:layout_marginTop="15dp"/>
+            android:textSize="17sp"
+            android:layout_marginTop="17dp"/>
 
         <TextView
-            android:id="@+id/descriptionDetail"
+            android:id="@+id/descriptionDetailTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pabrik yang didirikan sejak tahun 2013 sudah mengimplementasikan berbagai teknologi modern dan canggih yang siap meningkatkan produksi usaha UMK anda.  Kualitas produk akan dijamin bagus dan kami bisa memberikan garansi kecacatan produksi. Silahkan hubungi kami untuk mulai merencanakan produksi untuk bisnis anda."
             android:paddingHorizontal="20dp"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:layout_marginTop="5dp"/>
 
         <View
@@ -144,6 +145,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="8dp"
+            android:paddingVertical="10dp"
             android:backgroundTint="@color/manu_blue"
             android:text="Kirim Pengajuan"/>
 
