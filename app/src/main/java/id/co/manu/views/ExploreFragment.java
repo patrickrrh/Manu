@@ -13,12 +13,23 @@ import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.GridView;
 
+import org.checkerframework.checker.units.qual.A;
+
+import java.util.ArrayList;
+
 import id.co.manu.R;
+import id.co.manu.model.Factory;
 import id.co.manu.viewmodel.FactoryViewModel;
+import id.co.manu.views.adapter.FactoryAdapter;
 
 public class ExploreFragment extends Fragment {
 
     private FactoryViewModel factoryViewModel;
+    GridView gridView;
+    FactoryAdapter factoryAdapter;
+
+    ArrayList<Factory> arrayList = new ArrayList<>();
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +50,13 @@ public class ExploreFragment extends Fragment {
 
         AutoCompleteTextView autoCompleteDaerah = view.findViewById(R.id.autoCompleteDaerahTxt);
         AutoCompleteTextView autoCompleteKategori = view.findViewById(R.id.autoCompleteKategoriTxt);
-        GridView pabrikGrid = view.findViewById(R.id.pabrikGrid);
+        gridView = view.findViewById(R.id.pabrikGrid);
 
-
+        factoryViewModel.getAllFactory().observe(getActivity(), arrayList -> {
+            if(arrayList != null){
+                this.arrayList = arrayList;
+            }
+        });
 
     }
 }

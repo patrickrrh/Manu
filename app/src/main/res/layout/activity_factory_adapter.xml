@@ -9,6 +9,7 @@
     tools:context=".views.adapter.FactoryAdapter">
 
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/card_image"
             android:layout_width="match_parent"
             android:layout_height="130dp"
             android:layout_marginBottom="5dp"

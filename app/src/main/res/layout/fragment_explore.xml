@@ -83,7 +83,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/select"
+                    android:hint="@string/Semua"
                     app:boxCornerRadiusTopStart="15dp"
                     app:boxCornerRadiusTopEnd="15dp"
                     app:boxCornerRadiusBottomStart="15dp"
@@ -109,7 +109,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/select"
+                    android:hint="@string/Semua"
                     app:boxCornerRadiusTopStart="15dp"
                     app:boxCornerRadiusTopEnd="15dp"
                     app:boxCornerRadiusBottomStart="15dp"
