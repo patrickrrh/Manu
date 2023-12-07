@@ -9,4 +9,12 @@
         <item name="android:fontFamily">@font/poppins_family</item>
         <item name="android:textColor">@color/manu_blue</item>
     </style>
+
+    
+    <style name="splashScreenTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:fontFamily">@font/poppins_family</item>
+        <item name="android:textColor">@color/manu_blue</item>
+        <item name="android:windowBackground">@drawable/splash_image</item>
+        <item name="android:statusBarColor">@color/manu_blue</item>
+    </style>
 </resources>

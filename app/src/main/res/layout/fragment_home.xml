@@ -36,6 +36,7 @@
                         android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/homeUserTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Patrick Acongsen"
@@ -168,7 +169,7 @@
                             app:shapeAppearanceOverlay="@style/RoundedImageViewShapeTopOnly" />
 
                         <TextView
-                            android:id="@+id/card1_title"
+                            android:id="@+id/card1Title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="8dp"
@@ -177,7 +178,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/card1_category"
+                            android:id="@+id/card1Category"
                             android:layout_width="wrap_content"
                             android:layout_height="18dp"
                             android:paddingHorizontal="8dp"
@@ -185,7 +186,7 @@
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/card1_location"
+                            android:id="@+id/card1Address"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="8dp"
@@ -221,7 +222,7 @@
                             app:shapeAppearanceOverlay="@style/RoundedImageViewShapeTopOnly" />
 
                         <TextView
-                            android:id="@+id/card2_title"
+                            android:id="@+id/card2Title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="8dp"
@@ -230,7 +231,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/card2_category"
+                            android:id="@+id/card2Category"
                             android:layout_width="wrap_content"
                             android:layout_height="18dp"
                             android:paddingHorizontal="8dp"
@@ -238,7 +239,7 @@
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/card2_location"
+                            android:id="@+id/card2Address"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="8dp"
@@ -275,7 +276,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Apa itu Manu?"
+                            android:text="@string/apa_itu_manu"
                             android:textColor="@color/white"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -283,7 +284,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Ayo kenali Manu lebih jauh lagi!"
+                            android:text="@string/introduction_title"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
                     </LinearLayout>
