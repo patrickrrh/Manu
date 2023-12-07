@@ -1,4 +1,12 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval">
-    <solid android:color="@color/white" />
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Oval background shape -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/manu_blue" />
+        </shape>
+    </item>
+
+    <!-- Image -->
+    <item android:drawable="@drawable/round_arrow_back_24"
+        android:gravity="center" />
+</layer-list>

@@ -1,5 +1,6 @@
 package id.co.manu.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,12 @@ public class HomeFragment extends Fragment {
         homeUserTxt = view.findViewById(R.id.homeUserTxt);
         card1 = view.findViewById(R.id.card1);
         card2 = view.findViewById(R.id.card2);
+
+        card1.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getActivity(), DetailFactoryActivity.class);
+            startActivity(intent);
+
+        });
 
         card1Title = view.findViewById(R.id.card1Title);
         card2Title = view.findViewById(R.id.card2Title);
