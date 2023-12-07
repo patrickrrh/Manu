@@ -16,6 +16,8 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,8 +69,7 @@ public class FactoryAdapter extends BaseAdapter implements Filterable {
         TextView factoryCategory = convertView.findViewById(R.id.card_category);
         TextView factoryLocation = convertView.findViewById(R.id.card_location);
 
-//        imageView.setImageResource(filteredFactoryList.get(position).getImageUrl()); PAKE PICASSO
-        imageView.setImageResource(R.drawable.dummy_image);
+        Picasso.get().load(filteredFactoryList.get(position).getImageUrl()).into(imageView);
         factoryName.setText(filteredFactoryList.get(position).getName());
         factoryCategory.setText(filteredFactoryList.get(position).getCategory());
         factoryLocation.setText(filteredFactoryList.get(position).getAddress());
