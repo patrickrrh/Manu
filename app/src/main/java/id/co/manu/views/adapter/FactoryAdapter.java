@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,7 +22,7 @@ import java.util.List;
 import id.co.manu.R;
 import id.co.manu.model.Factory;
 
-public class FactoryAdapter extends BaseAdapter {
+public class FactoryAdapter extends BaseAdapter implements Filterable {
 
     private List<Factory> factoryList;
     private List<Factory> filteredFactoryList;
@@ -72,5 +74,46 @@ public class FactoryAdapter extends BaseAdapter {
         factoryLocation.setText(filteredFactoryList.get(position).getAddress());
 
         return convertView;
+    }
+
+    @Override
+    public Filter getFilter() {
+        Filter filter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                FilterResults filterResults = new FilterResults();
+
+                if (charSequence == null || charSequence.length() == 0) {
+                    filterResults.count = factoryList.size();
+                    filterResults.values = factoryList;
+                } else {
+                    String searchString = charSequence.toString().toLowerCase();
+                    List<Factory> resultData = new ArrayList<>();
+
+                    for (Factory factory : factoryList) {
+                        if (factory.getName().toLowerCase().startsWith(searchString)) {
+                            resultData.add(factory);
+                        }
+                    }
+
+                    filterResults.count = resultData.size();
+                    filterResults.values = resultData;
+                }
+
+                return filterResults;
+            }
+
+
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+
+                filteredFactoryList = (List<Factory>) filterResults.values;
+                notifyDataSetChanged();
+
+            }
+        };
+
+        return filter;
     }
 }

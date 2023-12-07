@@ -27,13 +27,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Cari Pabrik yang Anda Butuhkan"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -51,13 +44,14 @@
                         app:strokeWidth="1dp"
                         android:layout_marginTop="10dp">
 
-                        <TextView
+                        <EditText
+                            android:id="@+id/searchPabrik"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:hint="@string/cth_pabrik_furnitur"
                             android:padding="10dp"
-                            android:text="@string/cth_pabrik_furnitur"
-                            android:textColor="@color/light_grey" />
+                            android:textColorHint="@color/light_grey"/>
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -91,7 +85,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
                     <AutoCompleteTextView
-                        android:id="@+id/autoCompleteDaerahTxt"
+                        android:id="@+id/autoCompleteDaerah"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:inputType="none"/>
@@ -117,7 +111,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
                     <AutoCompleteTextView
-                        android:id="@+id/autoCompleteKategoriTxt"
+                        android:id="@+id/autoCompleteKategori"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:inputType="none"/>
