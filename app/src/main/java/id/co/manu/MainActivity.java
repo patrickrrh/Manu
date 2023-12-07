@@ -29,36 +29,16 @@ import id.co.manu.views.SignInFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private NavigationBarView bottomNavBar;
-    private AuthViewModel authViewModel;
-    private FrameLayout frameLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.Theme_Manu);
         setContentView(R.layout.activity_main);
 
-        new Handler().postDelayed(() -> {}, 3000);
-
-        authViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
-                .getInstance(MainActivity.this.getApplication())).get(AuthViewModel.class);
-
-        FirebaseUser firebaseUser = authViewModel.getUserData().getValue();
-        if (firebaseUser == null) {
-            // User not authenticated, show sign-in fragment
-            Fragment fragment = new SignInFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.mainFrameLayout, fragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-        }else{
-            // User authenticated, navigate to NavigationActivity
-            Intent intent = new Intent(MainActivity.this, NavigationActivity.class);
-            startActivity(intent);
-            finish();
-        }
+        Fragment fragment = new SignInFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.mainFrameLayout, fragment);
+        fragmentTransaction.commit();
 
     }
 }
