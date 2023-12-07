@@ -13,22 +13,25 @@ import id.co.manu.repository.FactoryRepo;
 
 public class FactoryViewModel extends AndroidViewModel {
 
-    FactoryRepo factoryRepo;
-    private MutableLiveData<ArrayList<Factory>> factoryListMutableLiveData;
-    private MutableLiveData<ArrayList<Factory>> recommendedFactoryMutableLiveData;
+    private final FactoryRepo factoryRepo;
+    private final MutableLiveData<ArrayList<Factory>> factoryList;
+    private final MutableLiveData<ArrayList<Factory>> recommendedFactoryList;
 
     public FactoryViewModel(@NonNull Application application) {
         super(application);
         factoryRepo = new FactoryRepo(application);
-        factoryListMutableLiveData = factoryRepo.getFactoryListMutableLiveData();
-        recommendedFactoryMutableLiveData = factoryRepo.getRecommendedFactoryListMutableLiveData();
+        factoryList = factoryRepo.getFactoryListMutableLiveData();
+        recommendedFactoryList = factoryRepo.getRecommendedFactoryListMutableLiveData();
+
     }
 
-    public MutableLiveData<ArrayList<Factory>> getFactoryListMutableLiveData() {
-        return factoryListMutableLiveData;
+    public MutableLiveData<ArrayList<Factory>> getAllFactory() {
+        factoryRepo.getAllFactory();
+        return factoryList;
     }
 
-    public MutableLiveData<ArrayList<Factory>> getRecommendedFactoryMutableLiveData() {
-        return recommendedFactoryMutableLiveData;
+    public MutableLiveData<ArrayList<Factory>> getRecommendedFactory() {
+        factoryRepo.getRecommendedFactory();
+        return recommendedFactoryList;
     }
 }

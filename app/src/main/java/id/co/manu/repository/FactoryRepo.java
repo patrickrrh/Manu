@@ -4,11 +4,9 @@ import android.app.Application;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -16,11 +14,12 @@ import java.util.Map;
 import id.co.manu.model.Factory;
 
 public class FactoryRepo {
-    private Application application;
-    private MutableLiveData<Factory> factoryMutableLiveData;
-    private MutableLiveData<ArrayList<Factory>> factoryListMutableLiveData;
-    private MutableLiveData<ArrayList<Factory>> recommendedFactoryMutableLiveData;
-    private FirebaseFirestore firestore;
+    private final Application application;
+    private final MutableLiveData<Factory> factoryMutableLiveData;
+    private final MutableLiveData<ArrayList<Factory>> factoryListMutableLiveData;
+    private final MutableLiveData<ArrayList<Factory>> recommendedFactoryMutableLiveData;
+    private final FirebaseFirestore firestore;
+    private final String collectionName = "factories";
 
     public FactoryRepo(Application application){
         this.application = application;
@@ -28,10 +27,12 @@ public class FactoryRepo {
 
         factoryMutableLiveData = new MutableLiveData<>();
         factoryListMutableLiveData = new MutableLiveData<>();
+        recommendedFactoryMutableLiveData = new MutableLiveData<>();
+
     }
 
     public void getAllFactory(){
-        firestore.collection("factories").get().addOnCompleteListener(task -> {
+        firestore.collection(collectionName).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 ArrayList<Factory> factoryList = new ArrayList<>();
                 for (QueryDocumentSnapshot factoryData : task.getResult()) {
@@ -41,7 +42,8 @@ public class FactoryRepo {
                             (String) factoryData.get("price"),
                             (String) factoryData.get("category"),
                             (String) factoryData.get("address"),
-                            (String) factoryData.get("description")
+                            (String) factoryData.get("description"),
+                            (String) factoryData.get("imageUrl")
                     );
                     factoryList.add(factory);
                 }
@@ -51,39 +53,34 @@ public class FactoryRepo {
     }
 
     public void getRecommendedFactory(){
-        DocumentReference factory1 = firestore.collection("factories").document("r2rAJ2dQv3QpYP0vjiAO");
-        DocumentReference factory2 = firestore.collection("factories").document("Hq2NvOdG9vWU30MN7gNy");
-        ArrayList<Factory> factoryList = new ArrayList<>();
-        factory1.get().addOnCompleteListener(task -> {
-           if(task.isSuccessful()){
-               DocumentSnapshot doc = task.getResult();
-               Factory factory = new Factory(
-                       doc.getId(),
-                       (String) doc.get("name"),
-                       (String) doc.get("price"),
-                       (String) doc.get("category"),
-                       (String) doc.get("address"),
-                       (String) doc.get("description")
-               );
-               factoryList.add(factory);
-           }
-        });
+        firestore.collection(collectionName).limit(2).get()
+                .addOnCompleteListener(task -> {
 
-        factory2.get().addOnCompleteListener(task -> {
-            if(task.isSuccessful()){
-                DocumentSnapshot doc = task.getResult();
-                Factory factory = new Factory(
-                        doc.getId(),
-                        (String) doc.get("name"),
-                        (String) doc.get("price"),
-                        (String) doc.get("category"),
-                        (String) doc.get("address"),
-                        (String) doc.get("description")
-                );
-                factoryList.add(factory);
-            }
-        });
-        recommendedFactoryMutableLiveData.postValue(factoryList);
+                    if (task.isSuccessful()) {
+                        ArrayList<Factory> factoryList = new ArrayList<>();
+                        for (DocumentSnapshot document : task.getResult()) {
+                            String documentId = document.getId();
+                            Map<String, Object> data = document.getData();
+
+                            // Assuming Factory has a constructor that takes documentId and a Map<String, Object>
+                            Factory factory = new Factory(
+                                    documentId,
+                                    (String) data.get("name"),
+                                    (String) data.get("price"),
+                                    (String) data.get("category"),
+                                    (String) data.get("address"),
+                                    (String) data.get("description"),
+                                    (String) data.get("imageUrl"));
+                            factoryList.add(factory);
+                        }
+                        recommendedFactoryMutableLiveData.postValue(factoryList);
+                    } else {
+                        Exception exception = task.getException();
+                        if (exception != null) {
+                            exception.printStackTrace();
+                        }
+                    }
+                });
     }
 
     public MutableLiveData<ArrayList<Factory>> getRecommendedFactoryListMutableLiveData() {
