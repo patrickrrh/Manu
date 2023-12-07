@@ -20,12 +20,12 @@ public class CustomerRepo {
     private MutableLiveData<Customer> customerLiveData;
     private FirebaseAuth auth;
     private FirebaseFirestore firestore;
-    private ListenerRegistration customerListener;
     private FirebaseUser user;
 
-    public CustomerRepo(Application application) {this.application = application;
+    public CustomerRepo(Application application) {
+        this.application = application;
         auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();  // Move this line after initializing auth
+        user = auth.getCurrentUser();
 
         customerLiveData = new MutableLiveData<>();
         firestore = FirebaseFirestore.getInstance();
@@ -39,7 +39,7 @@ public class CustomerRepo {
     private void observeCustomerDetails(String uid) {
         DocumentReference customerRef = firestore.collection("users").document(uid);
 
-        customerListener = customerRef.addSnapshotListener((documentSnapshot, e) -> {
+        customerRef.addSnapshotListener((documentSnapshot, e) -> {
             if (e != null) {
                 return;
             }
@@ -50,21 +50,16 @@ public class CustomerRepo {
                     String name = (String) data.get("name");
                     String phoneNum = (String) data.get("phoneNum");
                     String email = user.getEmail();
-                    Customer customer = new Customer(name, email, phoneNum);
+                    Customer customer = new Customer(uid, name, email, phoneNum);
 
-                    // Assuming that your Customer class has setName and setPhoneNum methods
                     customerLiveData.postValue(customer);
                 }
 
             }
         });
     }
-
     public MutableLiveData<Customer> getCustomerLiveData() {
         return customerLiveData;
     }
-
-
-
 
 }

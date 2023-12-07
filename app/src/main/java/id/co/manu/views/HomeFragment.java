@@ -18,10 +18,12 @@ import id.co.manu.R;
 import id.co.manu.model.Customer;
 import id.co.manu.viewmodel.AuthViewModel;
 import id.co.manu.viewmodel.CustomerViewModel;
+import id.co.manu.viewmodel.FactoryViewModel;
 
 public class HomeFragment extends Fragment {
-
+    //TODO: Buat untuk fetch data reccommended factory!
     private CustomerViewModel customerViewModel;
+    private FactoryViewModel factoryViewModel;
     private TextView homeUserTxt;
 
     @Override
@@ -29,6 +31,8 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         customerViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
                 .getInstance(getActivity().getApplication())).get(CustomerViewModel.class);
+        factoryViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
+                .getInstance(getActivity().getApplication())).get(FactoryViewModel.class);
     }
 
     @Override
@@ -47,6 +51,8 @@ public class HomeFragment extends Fragment {
                 homeUserTxt.setText(customer.getName());
             }
         });
+
+
 
 
     }
