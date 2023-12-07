@@ -22,7 +22,6 @@ public class FactoryViewModel extends AndroidViewModel {
         factoryRepo = new FactoryRepo(application);
         factoryList = factoryRepo.getFactoryListMutableLiveData();
         recommendedFactoryList = factoryRepo.getRecommendedFactoryListMutableLiveData();
-
     }
 
     public MutableLiveData<ArrayList<Factory>> getAllFactory() {

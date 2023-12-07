@@ -5,26 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".views.FactoryAdapter">
+    android:layout_margin="8dp"
+    tools:context=".views.adapter.FactoryAdapter">
 
-    <androidx.constraintlayout.utils.widget.ImageFilterView
-        android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"/>
-    
-    <TextView
-        android:id="@+id/nameTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginBottom="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/dummy_image"
+            app:shapeAppearanceOverlay="@style/RoundedImageViewShapeTopOnly" />
 
-    <TextView
-        android:id="@+id/descTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/card_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:text="PT Indo Rame"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/locationTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/card_category"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:paddingHorizontal="8dp"
+            android:text="Produsen Furnitur Kayu"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/card_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:text="Cianjur, Jawa Barat"
+            android:textColor="@color/light_grey"
+            android:textSize="11sp" />
 
 </LinearLayout>
