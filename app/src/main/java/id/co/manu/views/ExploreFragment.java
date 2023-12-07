@@ -52,9 +52,12 @@ public class ExploreFragment extends Fragment {
         AutoCompleteTextView autoCompleteKategori = view.findViewById(R.id.autoCompleteKategoriTxt);
         gridView = view.findViewById(R.id.pabrikGrid);
 
-        factoryViewModel.getAllFactory().observe(getActivity(), arrayList -> {
+        factoryAdapter = new FactoryAdapter(new ArrayList<>(), requireContext());
+        gridView.setAdapter(factoryAdapter);
+
+        factoryViewModel.getAllFactory().observe(getActivity(), factoryList -> {
             if(arrayList != null){
-                this.arrayList = arrayList;
+                factoryAdapter.setFactoryList(factoryList);
             }
         });
 

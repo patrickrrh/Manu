@@ -37,9 +37,15 @@ public class FactoryAdapter extends BaseAdapter {
         return filteredFactoryList.size();
     }
 
+    public void setFactoryList(List<Factory> factoryList) {
+        this.factoryList = factoryList;
+        this.filteredFactoryList = factoryList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public Object getItem(int position) {
-        return null;
+        return filteredFactoryList.get(position);
     }
 
     @Override
@@ -52,12 +58,12 @@ public class FactoryAdapter extends BaseAdapter {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.activity_factory_adapter, null);
+        convertView = inflater.inflate(R.layout.activity_factory_adapter, null);
 
-        ImageView imageView = view.findViewById(R.id.card_image);
-        TextView factoryName = view.findViewById(R.id.card_title);
-        TextView factoryCategory = view.findViewById(R.id.card_category);
-        TextView factoryLocation = view.findViewById(R.id.card_location);
+        ImageView imageView = convertView.findViewById(R.id.card_image);
+        TextView factoryName = convertView.findViewById(R.id.card_title);
+        TextView factoryCategory = convertView.findViewById(R.id.card_category);
+        TextView factoryLocation = convertView.findViewById(R.id.card_location);
 
 //        imageView.setImageResource(filteredFactoryList.get(position).getImageUrl()); PAKE PICASSO
         imageView.setImageResource(R.drawable.dummy_image);
@@ -65,6 +71,6 @@ public class FactoryAdapter extends BaseAdapter {
         factoryCategory.setText(filteredFactoryList.get(position).getCategory());
         factoryLocation.setText(filteredFactoryList.get(position).getAddress());
 
-        return view;
+        return convertView;
     }
 }
