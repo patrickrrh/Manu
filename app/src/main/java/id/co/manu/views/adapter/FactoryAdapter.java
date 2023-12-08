@@ -29,6 +29,8 @@ public class FactoryAdapter extends BaseAdapter implements Filterable {
     private List<Factory> factoryList;
     private List<Factory> filteredFactoryList;
     private Context context;
+    private String selectedCategory = "";
+    private String selectedLocation = "";
 
     public FactoryAdapter(List<Factory> factoryList, Context context) {
         this.factoryList = factoryList;
@@ -100,11 +102,8 @@ public class FactoryAdapter extends BaseAdapter implements Filterable {
                     filterResults.count = resultData.size();
                     filterResults.values = resultData;
                 }
-
                 return filterResults;
             }
-
-
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
@@ -114,7 +113,7 @@ public class FactoryAdapter extends BaseAdapter implements Filterable {
 
             }
         };
-
         return filter;
     }
+
 }

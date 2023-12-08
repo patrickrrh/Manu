@@ -7,8 +7,11 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 import id.co.manu.model.Factory;
@@ -18,17 +21,22 @@ public class FactoryRepo {
     private final MutableLiveData<Factory> factoryMutableLiveData;
     private final MutableLiveData<ArrayList<Factory>> factoryListMutableLiveData;
     private final MutableLiveData<ArrayList<Factory>> recommendedFactoryMutableLiveData;
+//    private final MutableLiveData<List<String>> uniqueDaerahMutableLiveData;
+//    private final MutableLiveData<List<String>> uniqueCategoryMutableLiveData;
     private final FirebaseFirestore firestore;
     private final String collectionName = "factories";
 
     public FactoryRepo(Application application){
         this.application = application;
+
         firestore = FirebaseFirestore.getInstance();
 
         factoryMutableLiveData = new MutableLiveData<>();
         factoryListMutableLiveData = new MutableLiveData<>();
         recommendedFactoryMutableLiveData = new MutableLiveData<>();
 
+//        uniqueDaerahMutableLiveData = new MutableLiveData<>();
+//        uniqueCategoryMutableLiveData = new MutableLiveData<>();
     }
 
     public void getAllFactory(){
@@ -48,6 +56,21 @@ public class FactoryRepo {
                     factoryList.add(factory);
                 }
                 factoryListMutableLiveData.postValue(factoryList);
+
+                // Extract unique Daerah and Category values
+                HashSet<String> uniqueDaerahSet = new HashSet<>();
+                HashSet<String> uniqueCategorySet = new HashSet<>();
+
+                for (Factory factory : factoryList) {
+                    uniqueDaerahSet.add(factory.getAddress());
+                    uniqueCategorySet.add(factory.getCategory());
+                }
+
+                List<String> uniqueDaerahList = new ArrayList<>(uniqueDaerahSet);
+                List<String> uniqueCategoryList = new ArrayList<>(uniqueCategorySet);
+
+//                uniqueDaerahMutableLiveData.postValue(uniqueDaerahList);
+//                uniqueCategoryMutableLiveData.postValue(uniqueCategoryList);
             }
         });
     }
@@ -90,4 +113,13 @@ public class FactoryRepo {
     public MutableLiveData<ArrayList<Factory>> getFactoryListMutableLiveData() {
         return factoryListMutableLiveData;
     }
+
+//    public MutableLiveData<List<String>> getUniqueDaerah() {
+//        return uniqueDaerahMutableLiveData;
+//    }
+//
+//    public MutableLiveData<List<String>> getUniqueCategory() {
+//        return uniqueCategoryMutableLiveData;
+//    }
+
 }

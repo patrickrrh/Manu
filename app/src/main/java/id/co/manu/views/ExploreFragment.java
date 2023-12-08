@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -86,15 +87,6 @@ public class ExploreFragment extends Fragment {
                 factoryAdapter.getFilter().filter(editable.toString());
             }
         });
-
-//        autoCompleteKategori.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                String item = adapterView.getItemAtPosition(i).toString();
-//                Toast.makeText(ExploreFragment.this, "Daerah: " + )
-//            }
-//        });
-
     }
 
 }
