@@ -24,4 +24,22 @@
     <string name="mulai_dari">Mulai dari</string>
     <string name="deskripsi_pabrik">Deskripsi Pabrik</string>
     <string name="Semua">Semua</string>
+    <string name="manu_logo">Manu Logo</string>
+    <string name="daftar_transaksi">Daftar Transaksi</string>
+    <string name="cari_transaksi">Cari Transaksi</string>
+    <string name="detail_transaksi">Detail Transaksi</string>
+    <string name="back_button">back button</string>
+    <string name="metode_pembayaran">Metode Pembayaran</string>
+    <string name="transfer">Transfer</string>
+    <string name="jumlah_barang">Jumlah Barang</string>
+    <string name="_100_buah">100 Buah</string>
+    <string name="strip">-</string>
+    <string name="biaya_asuransi">Biaya Asuransi</string>
+    <string name="rp15_000_00">Rp15.000,00</string>
+    <string name="tanggal_pemesanan">Tanggal Pemesanan</string>
+    <string name="nama_pabrik">Nama Pabrik</string>
+    <string name="status_pemesanan">Status Pemesanan</string>
+    <string name="total_pembayaran">Total Pembayaran</string>
+    <string name="id_pemesanan">ID Pemesanan</string>
+    <string name="total_belanja">Total Belanja</string>
 </resources>
