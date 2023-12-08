@@ -5,16 +5,145 @@
     android:layout_height="match_parent"
     tools:context=".views.ProfileFragment">
 
-    <Button
-        android:id="@+id/signOutBtn"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sign_out"
-        android:textStyle="bold"
-        android:textSize="15sp"
-        android:backgroundTint="@color/manu_blue"
-        android:padding="15dp"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="5dp"/>
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="30dp">
+
+        <ImageView
+            android:id="@+id/circleImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/profile_picture"
+            android:src="@drawable/profile_picture"
+            android:layout_gravity="center"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider_grey"
+            android:layout_marginVertical="30dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Info Profil"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginVertical="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="User ID"
+                android:textSize="16dp"
+                android:textColor="@color/light_grey"/>
+
+            <TextView
+                android:id="@+id/idUserTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1"
+                android:textSize="16dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginVertical="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nama"
+                android:textSize="16dp"
+                android:textColor="@color/light_grey"/>
+
+            <TextView
+                android:id="@+id/namaUserTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Acongsen"
+                android:textSize="16dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginVertical="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Email"
+                android:textSize="16dp"
+                android:textColor="@color/light_grey"/>
+
+            <TextView
+                android:id="@+id/emailUserTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="acong@gmail.com"
+                android:textSize="16dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginVertical="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nomor Telepon"
+                android:textSize="16dp"
+                android:textColor="@color/light_grey"/>
+
+            <TextView
+                android:id="@+id/teleponUserTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="+62"
+                android:textSize="16dp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider_grey"
+            android:layout_marginVertical="30dp"/>
+
+        <Button
+            android:id="@+id/signOutBtn"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_out"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:backgroundTint="@color/manu_blue"
+            android:padding="15dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp" />
+
+    </LinearLayout>
 
 </FrameLayout>
