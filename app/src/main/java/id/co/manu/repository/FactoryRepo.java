@@ -85,7 +85,6 @@ public class FactoryRepo {
                             String documentId = document.getId();
                             Map<String, Object> data = document.getData();
 
-                            // Assuming Factory has a constructor that takes documentId and a Map<String, Object>
                             Factory factory = new Factory(
                                     documentId,
                                     (String) data.get("name"),
