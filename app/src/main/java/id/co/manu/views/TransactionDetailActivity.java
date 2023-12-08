@@ -3,6 +3,12 @@ package id.co.manu.views;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 import id.co.manu.R;
 import id.co.manu.model.Transaction;
@@ -14,6 +20,33 @@ public class TransactionDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_detail);
 
+        ImageView backTransactionDetailBtn = findViewById(R.id.backTransactionDetailBtn);
+        backTransactionDetailBtn.setOnClickListener(onClick->{
+            finish();
+        });
+
+        TextView orderIdTxt = findViewById(R.id.orderIdTxt);
+        TextView transactionDateTxt = findViewById(R.id.transactionDateTxt);
+        TextView factoryNameTxt = findViewById(R.id.factoryNameTxt);
+        TextView totalPriceTxt = findViewById(R.id.totalPriceTxt);
+        TextView grandTotalTxt = findViewById(R.id.grandTotalTxt);
+
         Transaction transaction = (Transaction) getIntent().getSerializableExtra("transaction");
+        orderIdTxt.setText(transaction.getId());
+        //TODO: Set Transaction Date
+        factoryNameTxt.setText(transaction.getName());
+
+        String grandTotalPrice = transaction.getTotalPrice();
+        double price = Double.parseDouble(grandTotalPrice);
+        double priceNew = Double.parseDouble(grandTotalPrice) + 15000;
+        DecimalFormat decimalFormat = (DecimalFormat) DecimalFormat.getCurrencyInstance(new Locale("id", "ID"));
+        DecimalFormatSymbols symbols = decimalFormat.getDecimalFormatSymbols();
+        symbols.setCurrencySymbol("Rp");
+        decimalFormat.setDecimalFormatSymbols(symbols);
+        String formattedGrandTotalPrice = decimalFormat.format(priceNew);
+        String formattedTotalProce = decimalFormat.format(price);
+
+        totalPriceTxt.setText(formattedTotalProce);
+        grandTotalTxt.setText(formattedGrandTotalPrice);
     }
 }
