@@ -13,22 +13,14 @@
         android:layout_height="wrap_content"
         android:text="@string/daftar_transaksi"
         android:textStyle="bold"
+        android:layout_marginBottom="10dp"
         android:textSize="20sp"/>
-    <EditText
-        android:id="@+id/searchHistoryTbx"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/cari_transaksi"
-        android:background="@drawable/edit_text_drawable"
-        android:padding="12dp"
-        android:inputType="text"
-        android:autofillHints="name"
-        android:layout_marginBottom="15dp"
-        />
+
     <ListView
         android:id="@+id/historyLv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:dividerHeight="8dp"
         android:divider="@color/white"/>
 
 </LinearLayout>

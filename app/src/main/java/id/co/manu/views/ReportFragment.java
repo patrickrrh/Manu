@@ -59,13 +59,10 @@ public class ReportFragment extends Fragment {
 
                 historyLv.setAdapter(historyAdapter);
                 historyAdapter.notifyDataSetChanged();
-                historyLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent intent = new Intent(getActivity(), TransactionDetailActivity.class);
-                        intent.putExtra("transaction", transactionList.get(position));
-                        startActivity(intent);
-                    }
+                historyLv.setOnItemClickListener((parent, view1, position, id) -> {
+                    Intent intent = new Intent(getActivity(), TransactionDetailActivity.class);
+                    intent.putExtra("transaction", transactionList.get(position));
+                    startActivity(intent);
                 });
             });
         });

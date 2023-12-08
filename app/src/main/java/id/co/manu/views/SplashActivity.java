@@ -29,17 +29,18 @@ public class SplashActivity extends AppCompatActivity {
         authViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
                 .getInstance(SplashActivity.this.getApplication())).get(AuthViewModel.class);
 
-        FirebaseUser firebaseUser = authViewModel.getUserData().getValue();
-        Intent intent;
-        if (firebaseUser == null) {
-            // User not authenticated, show sign-in fragment
-            intent = new Intent(this, MainActivity.class);
-        }else{
-            // User authenticated, navigate to NavigationActivity
-            intent = new Intent(SplashActivity.this, NavigationActivity.class);
-        }
-        startActivity(intent);
-        finish();
+        authViewModel.getUserData().observe(this, firebaseUser -> {
+            Intent intent;
+            if (firebaseUser == null) {
+                // User not authenticated, show sign-in fragment
+                intent = new Intent(this, MainActivity.class);
+            } else {
+                // User authenticated, navigate to NavigationActivity
+                intent = new Intent(SplashActivity.this, NavigationActivity.class);
+            }
+            startActivity(intent);
+            finish();
+        });
 
     }
 }

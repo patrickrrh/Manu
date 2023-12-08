@@ -59,7 +59,6 @@ public class TransactionRepo {
                     transaction.setImageUrl(doc.getString("imageUrl"));
                     transactionList.add(transaction);
                 }
-                Log.d("ZZZZ", "" +transactionList.size());
                 transactionListMutableLiveData.postValue(transactionList);
 
             } else {
@@ -91,8 +90,14 @@ public class TransactionRepo {
 
     public void createTransaction(Transaction transaction){
         loadingStateLiveData.postValue(true);
-        firestore.collection("transactions").document().set(transaction).addOnCompleteListener(task->{
+        firestore.collection("transactions").add(transaction).addOnCompleteListener(task->{
             loadingStateLiveData.postValue(false);
+            String documentId = task.getResult().getId();
+            transaction.setId(documentId);
+            if(!db.isSuccessInsertTransaction(transaction)){
+                Toast.makeText(application, "Gagal menyimpan untuk offline mode", Toast.LENGTH_LONG).show();
+            }
+
             if(!task.isSuccessful()){
                 Toast.makeText(application, task.getException().getMessage(), Toast.LENGTH_LONG).show();
             }else{
