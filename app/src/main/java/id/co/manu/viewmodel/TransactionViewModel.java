@@ -21,10 +21,6 @@ public class TransactionViewModel extends AndroidViewModel {
         transactionList = transactionRepo.getTransactionMutableLiveData();
     }
 
-    public MutableLiveData<ArrayList<Transaction>> getTransactionList() {
-        return transactionList;
-    }
-
     public MutableLiveData<ArrayList<Transaction>> getAlltransactionList(String userId){
         transactionRepo.getAllTransactionFromFirestore(userId);
         return transactionList;

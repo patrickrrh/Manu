@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:paddingBottom="4dp"
+    android:elevation="0dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="20dp"
+    tools:context=".views.adapter.HistoryAdapter">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/transactionImg"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/loading_img"
+            app:shapeAppearanceOverlay="@style/RoundedImageViewShapeTopOnly" />
+
+        <TextView
+            android:id="@+id/historyTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nama Pabrik"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingHorizontal="18dp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/historyCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kategori Pabrik"
+            android:textSize="15sp"
+            android:paddingHorizontal="18dp"/>
+
+        <TextView
+            android:id="@+id/historyAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lokasi Pabrik"
+            android:textSize="15sp"
+            android:paddingHorizontal="18dp"
+            android:textColor="@color/light_grey"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pesanan dalam tahap produksi"
+            android:textAlignment="textEnd"
+            android:textSize="14sp"
+            android:paddingHorizontal="18dp"
+            android:textColor="@color/orange"/>
+
+    </LinearLayout>
+
+
+
+
+
+</androidx.cardview.widget.CardView>

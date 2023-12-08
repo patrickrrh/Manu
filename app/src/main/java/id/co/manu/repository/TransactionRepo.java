@@ -48,6 +48,7 @@ public class TransactionRepo {
                     transaction.setQuantity(doc.getString("quantity"));
                     transaction.setTotalPrice(doc.getString("totalPrice"));
                     transaction.setTransactionDate(doc.getString("transactionDate"));
+                    transaction.setImageUrl(doc.getString("imageUrl"));
                     transactionList.add(transaction);
                 }
                 transactionListMutableLiveData.postValue(transactionList);

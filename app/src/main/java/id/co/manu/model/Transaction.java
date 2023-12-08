@@ -1,7 +1,9 @@
 package id.co.manu.model;
 
-public class Transaction {
-    private String id, userId, name, category, address, quantity, totalPrice, transactionDate;
+import java.io.Serializable;
+
+public class Transaction implements Serializable {
+    private String id, userId, name, category, address, quantity, totalPrice, transactionDate, imageUrl;
 
     public void setId(String id) {
         this.id = id;
@@ -64,5 +66,13 @@ public class Transaction {
 
     public String getTransactionDate() {
         return transactionDate;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

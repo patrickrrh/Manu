@@ -19,28 +19,22 @@ import id.co.manu.model.Factory;
 
 public class DetailFactoryActivity extends AppCompatActivity {
 
-    private ImageView backDetailBtn, factoryDetailImg, companyPicDetailImg;
-    private Button kirimPengajuanBtn;
-    private Factory factory;
-    private TextView priceDetailTxt, categoryDetailTxt, companyNameDetailTxt, addressDetailTxt, descriptionDetailTxt;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_factory);
 
-        backDetailBtn = findViewById(R.id.backDetailBtn);
-        factoryDetailImg = findViewById(R.id.factoryDetailImg);
-        companyPicDetailImg = findViewById(R.id.companyPicDetailImg);
-        kirimPengajuanBtn = findViewById(R.id.kirimPengajuanBtn);
-        priceDetailTxt = findViewById(R.id.priceDetailTxt);
-        categoryDetailTxt = findViewById(R.id.categoryDetailTxt);
-        companyNameDetailTxt = findViewById(R.id.companyNameDetailTxt);
-        addressDetailTxt = findViewById(R.id.addressDetailTxt);
-        descriptionDetailTxt = findViewById(R.id.descriptionDetailTxt);
+        ImageView backDetailBtn = findViewById(R.id.backDetailBtn);
+        ImageView factoryDetailImg = findViewById(R.id.factoryDetailImg);
+        Button kirimPengajuanBtn = findViewById(R.id.kirimPengajuanBtn);
+        TextView priceDetailTxt = findViewById(R.id.priceDetailTxt);
+        TextView categoryDetailTxt = findViewById(R.id.categoryDetailTxt);
+        TextView companyNameDetailTxt = findViewById(R.id.companyNameDetailTxt);
+        TextView addressDetailTxt = findViewById(R.id.addressDetailTxt);
+        TextView descriptionDetailTxt = findViewById(R.id.descriptionDetailTxt);
 
 
-        factory = (Factory) getIntent().getSerializableExtra("factory");
+        Factory factory = (Factory) getIntent().getSerializableExtra("factory");
 
         String priceString = factory.getPrice();
         double price = Double.parseDouble(priceString);
