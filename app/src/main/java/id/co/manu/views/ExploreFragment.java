@@ -1,5 +1,6 @@
 package id.co.manu.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.checkerframework.checker.units.qual.A;
@@ -116,6 +118,18 @@ public class ExploreFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedCategory = parent.getItemAtPosition(position).toString();
                 filterFactoryList(selectedCategory, autoCompleteDaerah.getText().toString());
+            }
+        });
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Factory selectedFactory = (Factory) factoryAdapter.getItem(i);
+                if(selectedFactory != null){
+                    Intent detailFactory = new Intent(requireContext(), DetailFactoryActivity.class);
+                    detailFactory.putExtra("factory", selectedFactory);
+                    startActivity(detailFactory);
+                }
             }
         });
     }
