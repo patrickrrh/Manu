@@ -3,12 +3,8 @@ package id.co.manu.repository;
 import android.app.Application;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -18,10 +14,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AuthenticationRepo {
-    private Application application;
-    private MutableLiveData<FirebaseUser> firebaseUserMutableLiveData;
-    private MutableLiveData<Boolean> userLoggedLiveData;
-    private FirebaseAuth auth;
+    private final Application application;
+    private final MutableLiveData<FirebaseUser> firebaseUserMutableLiveData;
+    private final MutableLiveData<Boolean> userLoggedLiveData;
+    private final FirebaseAuth auth;
+    private final MutableLiveData<Boolean> loadingStateLiveData;
 
     public MutableLiveData<FirebaseUser> getFirebaseUserMutableLiveData() {
         return firebaseUserMutableLiveData;
@@ -31,10 +28,16 @@ public class AuthenticationRepo {
         return userLoggedLiveData;
     }
 
+
+    public MutableLiveData<Boolean> getLoadingStateLiveData() {
+        return loadingStateLiveData;
+    }
+
     public AuthenticationRepo(Application application){
         this.application = application;
         firebaseUserMutableLiveData = new MutableLiveData<>();
         userLoggedLiveData = new MutableLiveData<>();
+        loadingStateLiveData = new MutableLiveData<>(false);
         auth = FirebaseAuth.getInstance();
 
         if(auth.getCurrentUser() != null){
@@ -43,42 +46,40 @@ public class AuthenticationRepo {
     }
 
     public void register(String email, String password, String name, String phoneNum){
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                FirebaseUser user = auth.getCurrentUser();
-                if(user != null){
-                    String uid = user.getUid();
-                    DocumentReference userRef = FirebaseFirestore.getInstance().collection("users").document(uid);
-                    Map<String, Object> userData = new HashMap<>();
-                    userData.put("name", name);
-                    userData.put("phoneNum", phoneNum);
+        loadingStateLiveData.postValue(true);
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            FirebaseUser user = auth.getCurrentUser();
+            if(!task.isSuccessful()){
+                loadingStateLiveData.postValue(false);
+                Toast.makeText(application, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+            }else if(user != null){
+                String uid = user.getUid();
+                DocumentReference userRef = FirebaseFirestore.getInstance().collection("users").document(uid);
+                Map<String, Object> userData = new HashMap<>();
+                userData.put("name", name);
+                userData.put("phoneNum", phoneNum);
 
-                    userRef.set(userData).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
-                                firebaseUserMutableLiveData.postValue(auth.getCurrentUser());
-                            }else{
-                                Toast.makeText(application, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    });
-                }
-
+                userRef.set(userData).addOnCompleteListener(task1 -> {
+                    loadingStateLiveData.postValue(false);
+                    if(task1.isSuccessful()){
+                        firebaseUserMutableLiveData.postValue(auth.getCurrentUser());
+                    }else{
+                        Toast.makeText(application, task1.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
             }
+
         });
     }
 
     public void login(String email, String password){
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    firebaseUserMutableLiveData.postValue(auth.getCurrentUser());
-                }else{
-                    Toast.makeText(application, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                }
+        loadingStateLiveData.postValue(true);
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            loadingStateLiveData.postValue(false);
+            if(task.isSuccessful()){
+                firebaseUserMutableLiveData.postValue(auth.getCurrentUser());
+            }else{
+                Toast.makeText(application, task.getException().getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

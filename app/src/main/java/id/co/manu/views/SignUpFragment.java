@@ -1,10 +1,12 @@
 package id.co.manu.views;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -16,7 +18,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 
@@ -29,6 +33,7 @@ public class SignUpFragment extends Fragment {
     private TextView signInTxtBtn;
     private Button signUpBtn;
     private AuthViewModel authViewModel;
+    private ProgressBar loadingProgressBar;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,30 +67,33 @@ public class SignUpFragment extends Fragment {
         passwordRegisterTbx = view.findViewById(R.id.passwordRegisterTbx);
         signInTxtBtn = view.findViewById(R.id.signInTxtBtn);
         signUpBtn = view.findViewById(R.id.signUpBtn);
+        loadingProgressBar = view.findViewById(R.id.loadingRegisterProgressBar);
 
-        signInTxtBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new SignInFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.mainFrameLayout, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
+        signInTxtBtn.setOnClickListener(v -> {
+            Fragment fragment = new SignInFragment();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.mainFrameLayout, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         });
 
-        signUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String nama = namaRegisterTbx.getText().toString();
-                String phoneNum = nomorHandphoneRegisterTbx.getText().toString();
-                String email = emailRegisterTbx.getText().toString();
-                String password = passwordRegisterTbx.getText().toString();
+        signUpBtn.setOnClickListener(v -> {
+            String nama = namaRegisterTbx.getText().toString();
+            String phoneNum = nomorHandphoneRegisterTbx.getText().toString();
+            String email = emailRegisterTbx.getText().toString();
+            String password = passwordRegisterTbx.getText().toString();
 
-                if(!email.isEmpty() && !password.isEmpty() && !nama.isEmpty() && !phoneNum.isEmpty()){
-                    authViewModel.register(email, password, nama, phoneNum);
-                }
+            if(!email.isEmpty() && !password.isEmpty() && !nama.isEmpty() && !phoneNum.isEmpty()){
+                authViewModel.register(email, password, nama, phoneNum);
+                authViewModel.getLoadingState().observe(getViewLifecycleOwner(), isLoading->{
+                    loadingProgressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+                    signUpBtn.setEnabled(!isLoading);
+                    signUpBtn.setText(isLoading ? "" : "Buat Akun");
+                    signUpBtn.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getActivity(), isLoading ? R.color.light_grey: R.color.manu_blue)));
+                });
+            }else{
+                Toast.makeText(getContext(), "Isi semua field yang dibutuhkan!", Toast.LENGTH_SHORT).show();
             }
         });
     }

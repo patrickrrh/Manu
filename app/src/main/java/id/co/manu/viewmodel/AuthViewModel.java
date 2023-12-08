@@ -12,9 +12,14 @@ import id.co.manu.repository.AuthenticationRepo;
 
 public class AuthViewModel extends AndroidViewModel {
 
-    private AuthenticationRepo authRepo;
-    private MutableLiveData<FirebaseUser> userData;
-    private MutableLiveData<Boolean> loggedStatus;
+    private final AuthenticationRepo authRepo;
+    private final MutableLiveData<FirebaseUser> userData;
+    private final MutableLiveData<Boolean> loggedStatus;
+    private final MutableLiveData<Boolean> loadingState;
+
+    public MutableLiveData<Boolean> getLoadingState() {
+        return loadingState;
+    }
 
     public MutableLiveData<FirebaseUser> getUserData() {
         return userData;
@@ -27,6 +32,7 @@ public class AuthViewModel extends AndroidViewModel {
     public AuthViewModel(@NonNull Application application) {
         super(application);
         authRepo = new AuthenticationRepo(application);
+        loadingState = authRepo.getLoadingStateLiveData();
         userData = authRepo.getFirebaseUserMutableLiveData();
         loggedStatus = authRepo.getUserLoggedLiveData();
     }
