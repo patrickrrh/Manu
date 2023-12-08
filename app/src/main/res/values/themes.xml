@@ -7,6 +7,7 @@
 
     <style name="Theme.Manu" parent="Base.Theme.Manu">
         <item name="android:fontFamily">@font/poppins_family</item>
+        <item name="android:forceDarkAllowed">false</item>
         <item name="android:textColor">@color/manu_blue</item>
     </style>
 
