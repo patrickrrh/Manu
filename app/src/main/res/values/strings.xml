@@ -42,4 +42,5 @@
     <string name="total_pembayaran">Total Pembayaran</string>
     <string name="id_pemesanan">ID Pemesanan</string>
     <string name="total_belanja">Total Belanja</string>
+    <string name="pesan">Pesan</string>
 </resources>

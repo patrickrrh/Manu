@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import id.co.manu.R;
 import id.co.manu.model.Transaction;
+import id.co.manu.viewmodel.CustomViewModelFactory;
 import id.co.manu.viewmodel.CustomerViewModel;
 import id.co.manu.viewmodel.TransactionViewModel;
 import id.co.manu.views.adapter.HistoryAdapter;
@@ -31,8 +33,10 @@ public class ReportFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        transactionViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
-                .getInstance(getActivity().getApplication())).get(TransactionViewModel.class);
+        transactionViewModel = new ViewModelProvider(this, new CustomViewModelFactory(getActivity().getApplication(), getContext())).get(TransactionViewModel.class);
+
+        customerViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
+                .getInstance(getActivity().getApplication())).get(CustomerViewModel.class);
     }
 
     @Override
@@ -45,27 +49,25 @@ public class ReportFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         historyLv = view.findViewById(R.id.historyLv);
-        AtomicReference<String> userId = new AtomicReference<>();
-        customerViewModel.getCustomerData().observe(getActivity(), customer -> {
-            userId.set(customer.getUid());
-        });
-
         ArrayList<Transaction> transactionList = new ArrayList<>();
-        transactionViewModel.getAlltransactionList(userId.get()).observe(getActivity(), transactions -> {
-            transactionList.addAll(transactions);
-        });
+        customerViewModel.getCustomerData().observe(getActivity(), customer -> {
+            String userId = customer.getUid();
 
-        HistoryAdapter historyAdapter = new HistoryAdapter(getContext(), R.layout.activity_history_adapter, transactionList);
+            transactionViewModel.getAlltransactionList(userId).observe(getActivity(), transactions -> {
+                transactionList.addAll(transactions);
+                HistoryAdapter historyAdapter = new HistoryAdapter(getContext(), R.layout.activity_history_adapter, transactionList);
 
-        historyLv.setAdapter(historyAdapter);
-
-        historyLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), TransactionDetailActivity.class);
-                intent.putExtra("transaction", transactionList.get(position));
-                startActivity(intent);
-            }
+                historyLv.setAdapter(historyAdapter);
+                historyAdapter.notifyDataSetChanged();
+                historyLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(getActivity(), TransactionDetailActivity.class);
+                        intent.putExtra("transaction", transactionList.get(position));
+                        startActivity(intent);
+                    }
+                });
+            });
         });
 
     }
