@@ -21,8 +21,8 @@ public class FactoryRepo {
     private final MutableLiveData<Factory> factoryMutableLiveData;
     private final MutableLiveData<ArrayList<Factory>> factoryListMutableLiveData;
     private final MutableLiveData<ArrayList<Factory>> recommendedFactoryMutableLiveData;
-//    private final MutableLiveData<List<String>> uniqueDaerahMutableLiveData;
-//    private final MutableLiveData<List<String>> uniqueCategoryMutableLiveData;
+    private final MutableLiveData<List<String>> uniqueDaerahMutableLiveData;
+    private final MutableLiveData<List<String>> uniqueCategoryMutableLiveData;
     private final FirebaseFirestore firestore;
     private final String collectionName = "factories";
 
@@ -35,8 +35,8 @@ public class FactoryRepo {
         factoryListMutableLiveData = new MutableLiveData<>();
         recommendedFactoryMutableLiveData = new MutableLiveData<>();
 
-//        uniqueDaerahMutableLiveData = new MutableLiveData<>();
-//        uniqueCategoryMutableLiveData = new MutableLiveData<>();
+        uniqueDaerahMutableLiveData = new MutableLiveData<>();
+        uniqueCategoryMutableLiveData = new MutableLiveData<>();
     }
 
     public void getAllFactory(){
@@ -69,8 +69,8 @@ public class FactoryRepo {
                 List<String> uniqueDaerahList = new ArrayList<>(uniqueDaerahSet);
                 List<String> uniqueCategoryList = new ArrayList<>(uniqueCategorySet);
 
-//                uniqueDaerahMutableLiveData.postValue(uniqueDaerahList);
-//                uniqueCategoryMutableLiveData.postValue(uniqueCategoryList);
+                uniqueDaerahMutableLiveData.postValue(uniqueDaerahList);
+                uniqueCategoryMutableLiveData.postValue(uniqueCategoryList);
             }
         });
     }
@@ -114,12 +114,12 @@ public class FactoryRepo {
         return factoryListMutableLiveData;
     }
 
-//    public MutableLiveData<List<String>> getUniqueDaerah() {
-//        return uniqueDaerahMutableLiveData;
-//    }
-//
-//    public MutableLiveData<List<String>> getUniqueCategory() {
-//        return uniqueCategoryMutableLiveData;
-//    }
+    public MutableLiveData<List<String>> getUniqueDaerah() {
+        return uniqueDaerahMutableLiveData;
+    }
+
+    public MutableLiveData<List<String>> getUniqueCategory() {
+        return uniqueCategoryMutableLiveData;
+    }
 
 }

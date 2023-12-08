@@ -18,16 +18,16 @@ public class FactoryViewModel extends AndroidViewModel {
     private final FactoryRepo factoryRepo;
     private final MutableLiveData<ArrayList<Factory>> factoryList;
     private final MutableLiveData<ArrayList<Factory>> recommendedFactoryList;
-//    private final MutableLiveData<List<String>> daerahList;
-//    private final MutableLiveData<List<String>> categoryList;
+    private final MutableLiveData<List<String>> daerahList;
+    private final MutableLiveData<List<String>> categoryList;
 
     public FactoryViewModel(@NonNull Application application) {
         super(application);
         factoryRepo = new FactoryRepo(application);
         factoryList = factoryRepo.getFactoryListMutableLiveData();
         recommendedFactoryList = factoryRepo.getRecommendedFactoryListMutableLiveData();
-//        daerahList = factoryRepo.getUniqueDaerah();
-//        categoryList = factoryRepo.getUniqueCategory();
+        daerahList = factoryRepo.getUniqueDaerah();
+        categoryList = factoryRepo.getUniqueCategory();
     }
 
     public MutableLiveData<ArrayList<Factory>> getAllFactory() {
@@ -40,13 +40,13 @@ public class FactoryViewModel extends AndroidViewModel {
         return recommendedFactoryList;
     }
 
-//    public MutableLiveData<List<String>> getDaerahList(){
-//        factoryRepo.getUniqueDaerah();
-//        return daerahList;
-//    }
-//
-//    public MutableLiveData<List<String>> getCategoryList(){
-//        factoryRepo.getUniqueCategory();
-//        return categoryList;
-//    }
+    public MutableLiveData<List<String>> getDaerahList(){
+        factoryRepo.getUniqueDaerah();
+        return daerahList;
+    }
+
+    public MutableLiveData<List<String>> getCategoryList(){
+        factoryRepo.getUniqueCategory();
+        return categoryList;
+    }
 }
