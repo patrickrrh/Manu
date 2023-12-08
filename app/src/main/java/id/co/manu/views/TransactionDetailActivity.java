@@ -44,9 +44,9 @@ public class TransactionDetailActivity extends AppCompatActivity {
         symbols.setCurrencySymbol("Rp");
         decimalFormat.setDecimalFormatSymbols(symbols);
         String formattedGrandTotalPrice = decimalFormat.format(priceNew);
-        String formattedTotalProce = decimalFormat.format(price);
+        String formattedTotalPrice = decimalFormat.format(price);
 
-        totalPriceTxt.setText(formattedTotalProce);
+        totalPriceTxt.setText(formattedTotalPrice);
         grandTotalTxt.setText(formattedGrandTotalPrice);
     }
 }

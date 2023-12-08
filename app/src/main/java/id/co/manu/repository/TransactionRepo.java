@@ -3,6 +3,8 @@ package id.co.manu.repository;
 import android.app.Application;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -20,13 +22,19 @@ public class TransactionRepo {
     private final Application application;
     private final DatabaseHelper db;
     private final FirebaseFirestore firestore;
+    private final MutableLiveData<Boolean> loadingStateLiveData;
     private final MutableLiveData<ArrayList<Transaction>> transactionListMutableLiveData;
 
     public TransactionRepo(Application application, Context context) {
         this.application = application;
         transactionListMutableLiveData = new MutableLiveData<>();
+        loadingStateLiveData = new MutableLiveData<>();
         firestore = FirebaseFirestore.getInstance();
         db = new DatabaseHelper(context);
+    }
+
+    public MutableLiveData<Boolean> getLoadingStateLiveData() {
+        return loadingStateLiveData;
     }
 
     public MutableLiveData<ArrayList<Transaction>> getTransactionMutableLiveData() {
@@ -34,7 +42,7 @@ public class TransactionRepo {
     }
 
     public void getAllTransactionFromFirestore(String userId){
-        firestore.collection("transaction").whereEqualTo("userId", userId).get().addOnCompleteListener(task->{
+        firestore.collection("transactions").whereEqualTo("userId", userId).get().addOnCompleteListener(task->{
             if (task.isSuccessful()) {
                 ArrayList<Transaction> transactionList = new ArrayList<>();
                 QuerySnapshot snapshot = task.getResult();
@@ -54,8 +62,7 @@ public class TransactionRepo {
                 transactionListMutableLiveData.postValue(transactionList);
 
             } else {
-                //IF GETTING FROM FIREBASE NOT SUCCESS
-                //THEN AMBIL DATA DARI SQLITE
+                Toast.makeText(application, "Gagal! Memuat data offline...", Toast.LENGTH_LONG).show();
                 getAllTransactionFromSQLite(userId);
             }
         });
@@ -80,4 +87,23 @@ public class TransactionRepo {
         }
         transactionListMutableLiveData.postValue(transactionArrayList);
     }
+
+    public void createTransaction(Transaction transaction){
+        loadingStateLiveData.postValue(true);
+        firestore.collection("transactions").add(transaction).addOnCompleteListener(task->{
+            loadingStateLiveData.postValue(false);
+            String documentId = task.getResult().getId();
+            transaction.setId(documentId);
+            if(!db.isSuccessInsertTransaction(transaction)){
+                Toast.makeText(application, "Gagal menyimpan untuk offline mode", Toast.LENGTH_LONG).show();
+            }
+
+            if(!task.isSuccessful()){
+                Toast.makeText(application, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(application, "Pesanan berhasil dibuat", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 }

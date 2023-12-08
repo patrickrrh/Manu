@@ -139,15 +139,28 @@
             android:layout_height="0dp"
             android:layout_weight="1"/>
 
-        <Button
-            android:id="@+id/kirimPengajuanBtn"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="8dp"
-            android:paddingVertical="10dp"
-            android:backgroundTint="@color/manu_blue"
-            android:text="Kirim Pengajuan"/>
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/kirimPengajuanBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="8dp"
+                android:paddingVertical="10dp"
+                android:backgroundTint="@color/manu_blue"
+                android:text="@string/pesan"/>
+            <ProgressBar
+                android:id="@+id/loadingPesanProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:indeterminateTint="@color/white"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+
 
 
     </LinearLayout>
@@ -157,5 +170,6 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_margin="10dp"
-        android:background="@drawable/circle_background"/>
+        android:background="@drawable/circle_background"
+        android:contentDescription="@string/back_button" />
 </RelativeLayout>

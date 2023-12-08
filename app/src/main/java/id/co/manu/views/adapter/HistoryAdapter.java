@@ -23,7 +23,7 @@ public class HistoryAdapter extends ArrayAdapter<Transaction> {
     private int resource;
 
     public HistoryAdapter(@NonNull Context context, int resource, ArrayList<Transaction> transactionList) {
-        super(context, resource);
+        super(context, resource, transactionList);
         this.context = context;
         this.resource = resource;
     }
@@ -37,7 +37,7 @@ public class HistoryAdapter extends ArrayAdapter<Transaction> {
         String imageUrl = getItem(position).getImageUrl();
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        inflater.inflate(resource, parent, false);
+        convertView = inflater.inflate(resource, parent, false);
 
         TextView nameTxt = (TextView) convertView.findViewById(R.id.historyTitle);
         TextView categoryTxt = (TextView) convertView.findViewById(R.id.historyCategory);
