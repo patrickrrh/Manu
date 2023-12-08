@@ -71,6 +71,23 @@ public class ExploreFragment extends Fragment {
             }
         });
 
+        factoryViewModel.getDaerahList().observe(getViewLifecycleOwner(), daerahList -> {
+            ArrayAdapter<String> autoCompleteDaerahAdapter = new ArrayAdapter<>(
+                    requireContext(),
+                    androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                    daerahList
+            );
+            autoCompleteDaerah.setAdapter(autoCompleteDaerahAdapter);
+        });
+
+        factoryViewModel.getCategoryList().observe(getViewLifecycleOwner(), categoryList -> {
+            ArrayAdapter<String> autoCompleteCategoryAdapter = new ArrayAdapter<>(
+                    requireContext(),
+                    androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                    categoryList
+            );
+            autoCompleteKategori.setAdapter(autoCompleteCategoryAdapter);
+        });
         searchFilteredPabrik.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -87,6 +104,25 @@ public class ExploreFragment extends Fragment {
                 factoryAdapter.getFilter().filter(editable.toString());
             }
         });
+        autoCompleteDaerah.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedDaerah = parent.getItemAtPosition(position).toString();
+                filterFactoryList(autoCompleteKategori.getText().toString(), selectedDaerah);
+            }
+        });
+        autoCompleteKategori.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedCategory = parent.getItemAtPosition(position).toString();
+                filterFactoryList(selectedCategory, autoCompleteDaerah.getText().toString());
+            }
+        });
+    }
+
+    private void filterFactoryList(String selectedCategory, String selectedDaerah) {
+        String nameFilter = searchFilteredPabrik.getText().toString();
+        factoryAdapter.filterData(nameFilter, selectedDaerah, selectedCategory);
     }
 
 }

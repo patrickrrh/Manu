@@ -29,8 +29,6 @@ public class FactoryAdapter extends BaseAdapter implements Filterable {
     private List<Factory> factoryList;
     private List<Factory> filteredFactoryList;
     private Context context;
-    private String selectedCategory = "";
-    private String selectedLocation = "";
 
     public FactoryAdapter(List<Factory> factoryList, Context context) {
         this.factoryList = factoryList;
@@ -114,6 +112,23 @@ public class FactoryAdapter extends BaseAdapter implements Filterable {
             }
         };
         return filter;
+    }
+
+    public void filterData(String name, String selectedDaerah, String selectedCategory) {
+        List<Factory> resultData = new ArrayList<>();
+
+        for (Factory factory : factoryList) {
+            boolean nameMatch = factory.getName().toLowerCase().contains(name.toLowerCase());
+            boolean daerahMatch = selectedDaerah.isEmpty() || selectedDaerah.equals("Semua") || factory.getAddress().equals(selectedDaerah);
+            boolean categoryMatch = selectedCategory.isEmpty() || selectedCategory.equals("Semua") || factory.getCategory().equals(selectedCategory);
+
+            if (nameMatch && daerahMatch && categoryMatch) {
+                resultData.add(factory);
+            }
+        }
+
+        filteredFactoryList = resultData;
+        notifyDataSetChanged();
     }
 
 }
