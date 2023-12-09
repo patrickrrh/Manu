@@ -55,9 +55,12 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:hint="@string/cth_pabrik_furnitur"
-                                android:padding="10dp"
+                                android:paddingVertical="10dp"
+                                android:paddingLeft="10dp"
+                                android:paddingEnd="40dp"
                                 android:textColorHint="@color/light_grey"
-                                android:background="@drawable/no_underline"/>
+                                android:background="@drawable/no_underline"
+                                android:maxLines="1"/>
 
                             <ImageView
                                 android:layout_width="wrap_content"
@@ -93,8 +96,10 @@
                         <AutoCompleteTextView
                             android:id="@+id/autoCompleteDaerah"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:inputType="none"/>
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            android:dropDownHeight="wrap_content"
+                            android:popupElevation="8dp"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,8 +124,10 @@
                         <AutoCompleteTextView
                             android:id="@+id/autoCompleteKategori"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:inputType="none"/>
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            android:dropDownHeight="wrap_content"
+                            android:popupElevation="8dp"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 
