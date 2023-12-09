@@ -39,10 +39,8 @@ public class AuthenticationRepo {
         userLoggedLiveData = new MutableLiveData<>();
         loadingStateLiveData = new MutableLiveData<>(false);
         auth = FirebaseAuth.getInstance();
+        firebaseUserMutableLiveData.postValue(auth.getCurrentUser());
 
-        if(auth.getCurrentUser() != null){
-            firebaseUserMutableLiveData.postValue(auth.getCurrentUser());
-        }
     }
 
     public void register(String email, String password, String name, String phoneNum){

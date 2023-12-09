@@ -24,7 +24,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        new Handler().postDelayed(() -> {}, 3000);
 
         authViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
                 .getInstance(SplashActivity.this.getApplication())).get(AuthViewModel.class);
@@ -34,11 +33,13 @@ public class SplashActivity extends AppCompatActivity {
             if (firebaseUser == null) {
                 // User not authenticated, show sign-in fragment
                 intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
             } else {
                 // User authenticated, navigate to NavigationActivity
                 intent = new Intent(SplashActivity.this, NavigationActivity.class);
+                startActivity(intent);
             }
-            startActivity(intent);
+
             finish();
         });
 
