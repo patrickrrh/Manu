@@ -65,7 +65,6 @@ public class SignInFragment extends Fragment {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.mainFrameLayout, fragment);
-            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         });
 
