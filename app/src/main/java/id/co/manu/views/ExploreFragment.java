@@ -74,6 +74,9 @@ public class ExploreFragment extends Fragment {
         });
 
         factoryViewModel.getDaerahList().observe(getViewLifecycleOwner(), daerahList -> {
+
+            daerahList.add(0, "Semua");
+
             ArrayAdapter<String> autoCompleteDaerahAdapter = new ArrayAdapter<>(
                     requireContext(),
                     androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
@@ -83,6 +86,9 @@ public class ExploreFragment extends Fragment {
         });
 
         factoryViewModel.getCategoryList().observe(getViewLifecycleOwner(), categoryList -> {
+
+            categoryList.add(0, "Semua");
+
             ArrayAdapter<String> autoCompleteCategoryAdapter = new ArrayAdapter<>(
                     requireContext(),
                     androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
@@ -110,14 +116,24 @@ public class ExploreFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedDaerah = parent.getItemAtPosition(position).toString();
-                filterFactoryList(autoCompleteKategori.getText().toString(), selectedDaerah);
+                if ("Semua".equals(selectedDaerah)) {
+                    // Handle "Semua" selection, show all data
+                    factoryAdapter.setFactoryList(factoryAdapter.getUnfilteredFactoryList());
+                } else {
+                    filterFactoryList(autoCompleteKategori.getText().toString(), selectedDaerah);
+                }
             }
         });
         autoCompleteKategori.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedCategory = parent.getItemAtPosition(position).toString();
-                filterFactoryList(selectedCategory, autoCompleteDaerah.getText().toString());
+                if ("Semua".equals(selectedCategory)) {
+                    // Handle "Semua" selection, show all data
+                    factoryAdapter.setFactoryList(factoryAdapter.getUnfilteredFactoryList());
+                } else {
+                    filterFactoryList(selectedCategory, autoCompleteDaerah.getText().toString());
+                }
             }
         });
 

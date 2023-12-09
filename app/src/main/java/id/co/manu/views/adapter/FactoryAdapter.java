@@ -131,4 +131,8 @@ public class FactoryAdapter extends BaseAdapter implements Filterable {
         notifyDataSetChanged();
     }
 
+    public List<Factory> getUnfilteredFactoryList() {
+        return factoryList;
+    }
+
 }
