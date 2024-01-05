@@ -33,7 +33,7 @@ public class TransactionDetailActivity extends AppCompatActivity {
 
         Transaction transaction = (Transaction) getIntent().getSerializableExtra("transaction");
         orderIdTxt.setText(transaction.getId());
-        //TODO: Set Transaction Date
+        transactionDateTxt.setText(transaction.getTransactionDate());
         factoryNameTxt.setText(transaction.getName());
 
         String grandTotalPrice = transaction.getTotalPrice();
